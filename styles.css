@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+/* Main Container */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    color: #333;
+}
+
+header h1 {
+    font-weight: 600;
+    color: #ff6600;
+}
+
+.hero img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+/* Menu Section */
+.menu h2 {
+    color: #444;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.item {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.item img {
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+}
+
+.item p {
+    font-weight: 500;
+    color: #222;
+}
+
+.item:hover {
+    transform: scale(1.05);
+}
+
+/* Form Styling */
+form {
+    margin-top: 20px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+select {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 20px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e55b00;
+}
+
+/* Bill Display */
+#bill {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+}
