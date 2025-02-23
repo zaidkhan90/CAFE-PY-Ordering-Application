@@ -1,39 +1,48 @@
-<<<<<<< HEAD
-document.getElementById("orderForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent page refresh
+let order = [];
+let totalBill = 0;
 
-    let item = document.getElementById("item").value;
+function addItem(name, price) {
+    order.push({ name, price });
+    totalBill += price;
+    updateOrderTable();
+}
 
-    fetch("http://127.0.0.1:5000/order", {  // Connecting to backend
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ item: item })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("bill").innerText = `Total Bill: ₹${data.bill}`;
-    })
-    .catch(error => console.error("Error:", error));
-});
-=======
-document.getElementById("orderForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent page refresh
+function removeItem(index) {
+    totalBill -= order[index].price;
+    order.splice(index, 1);
+    updateOrderTable();
+}
 
-    let item = document.getElementById("item").value;
+function clearOrder() {
+    order = [];
+    totalBill = 0;
+    updateOrderTable();
+}
 
-    fetch("http://127.0.0.1:5000/order", {  // Connecting to backend
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ item: item })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("bill").innerText = `Total Bill: ₹${data.bill}`;
-    })
+function confirmOrder() {
+    if (order.length === 0) {
+        alert("Your cart is empty! Please add items before confirming.");
+        return;
+    }
+    alert(`Order confirmed! Your total bill is $${totalBill}`);
+}
+
+function updateOrderTable() {
+    let tableBody = document.getElementById("order-list");
+    tableBody.innerHTML = "";
+
+    order.forEach((item, index) => {
+        let row = `<tr>
+            <td>${item.name}</td>
+            <td>$${item.price}</td>
+            <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+
+    document.getElementById("total-bill").innerText = totalBill;
+}
+
     .catch(error => console.error("Error:", error));
 });
 >>>>>>> b9d09bf0d2360c5c6168b7e7a3f207706dd0803f
