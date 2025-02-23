@@ -3,24 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café Ordering System</title>
+    <title>Café PY Ordering System</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .hero img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .menu-list {
+            list-style: none;
+            padding: 0;
+        }
+        .menu-list li {
+            font-size: 18px;
+            padding: 10px;
+        }
+        .btn {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body class="container mt-4">
 
-    <h2 class="text-center">☕ Welcome to Café PY 🍕</h2>
+    <!-- 🌟 Aesthetic Café Image -->
+    <div class="hero">
+        <img src="https://source.unsplash.com/1000x400/?coffee-shop,cafe" alt="Aesthetic Café">
+    </div>
 
-    <!-- Menu Section -->
-    <h4>Menu</h4>
-    <ul id="menu-list">
-        <li>Coffee - $80 <button onclick="addItem('Coffee', 80)">Add</button></li>
-        <li>Pizza - $150 <button onclick="addItem('Pizza', 150)">Add</button></li>
-        <li>Burger - $90 <button onclick="addItem('Burger', 90)">Add</button></li>
-        <li>Hot Chocolate - $150 <button onclick="addItem('Hot Chocolate', 150)">Add</button></li>
+    <h2 class="text-primary">☕ Welcome to Café PY 🍕</h2>
+
+    <!-- 📜 Menu Section -->
+    <h4 class="mt-4">📋 Our Menu</h4>
+    <ul class="menu-list">
+        <li>Coffee - $80 <button class="btn btn-sm btn-success" onclick="addItem('Coffee', 80)">Add</button></li>
+        <li>Pizza - $150 <button class="btn btn-sm btn-success" onclick="addItem('Pizza', 150)">Add</button></li>
+        <li>Burger - $90 <button class="btn btn-sm btn-success" onclick="addItem('Burger', 90)">Add</button></li>
+        <li>Hot Chocolate - $150 <button class="btn btn-sm btn-success" onclick="addItem('Hot Chocolate', 150)">Add</button></li>
     </ul>
 
-    <!-- Order Table -->
+    <!-- 🛒 Order Table -->
     <h4>Your Order</h4>
     <table class="table table-bordered">
         <thead>
@@ -35,9 +64,9 @@
 
     <h4>Total Bill: $<span id="total-bill">0</span></h4>
 
-    <!-- Buttons -->
-    <button class="btn btn-success" onclick="confirmOrder()">Confirm Order</button>
-    <button class="btn btn-danger" onclick="clearOrder()">Clear Plate</button>
+    <!-- 🛠️ Action Buttons -->
+    <button class="btn btn-success" onclick="confirmOrder()">✅ Confirm Order</button>
+    <button class="btn btn-danger" onclick="clearOrder()">❌ Clear Plate</button>
 
     <script src="script.js"></script>
 
