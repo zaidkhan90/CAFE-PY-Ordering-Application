@@ -1,63 +1,39 @@
-<<<<<<< HEAD
-from flask import Flask, request, jsonify
-from flask_cors import CORS  # To allow frontend requests
+from flask import Flask, render_template, request, jsonify, session
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable Cross-Origin Requests
+app.secret_key = "cafe_py_secret_key"
+CORS(app)
 
-# Menu items with prices
 menu = {
-    'coffee': 80,
-    'Pizza': 150,
-    'Burger': 90,
-    'Hot choclate': 150,
+    "Coffee": 80,
+    "Pizza": 150,
+    "Burger": 90,
+    "Hot Chocolate": 150
 }
 
-bill = 0  # Initialize bill
+@app.route("/")
+def home():
+    return render_template("index.html")
 
-@app.route("/order", methods=["POST"])
-def order():
-    global bill  # Use global variable
-    data = request.get_json()  # Get item from frontend
-    item = data.get("item")
+@app.route("/add-item", methods=["POST"])
+def add_item():
+    item = request.json["item"]
+    if "cart" not in session:
+        session["cart"] = []
+    session["cart"].append({"name": item, "price": menu[item]})
+    session.modified = True
+    return jsonify({"message": f"{item} added to cart", "cart": session["cart"]})
 
-    if item in menu:
-        bill += menu[item]
-        return jsonify({"message": f"{item} added!", "bill": bill})
-    else:
-        return jsonify({"message": "Item not available!", "bill": bill})
+@app.route("/clear-cart", methods=["POST"])
+def clear_cart():
+    session.pop("cart", None)
+    return jsonify({"message": "Cart cleared"})
+
+@app.route("/get-total", methods=["GET"])
+def get_total():
+    total = sum(item["price"] for item in session.get("cart", []))
+    return jsonify({"total": total})
 
 if __name__ == "__main__":
     app.run(debug=True)
-=======
-from flask import Flask, request, jsonify
-from flask_cors import CORS  # To allow frontend requests
-
-app = Flask(__name__)
-CORS(app)  # Enable Cross-Origin Requests
-
-# Menu items with prices
-menu = {
-    'coffee': 80,
-    'Pizza': 150,
-    'Burger': 90,
-    'Hot choclate': 150,
-}
-
-bill = 0  # Initialize bill
-
-@app.route("/order", methods=["POST"])
-def order():
-    global bill  # Use global variable
-    data = request.get_json()  # Get item from frontend
-    item = data.get("item")
-
-    if item in menu:
-        bill += menu[item]
-        return jsonify({"message": f"{item} added!", "bill": bill})
-    else:
-        return jsonify({"message": "Item not available!", "bill": bill})
-
-if __name__ == "__main__":
-    app.run(debug=True)
->>>>>>> b9d09bf0d2360c5c6168b7e7a3f207706dd0803f
