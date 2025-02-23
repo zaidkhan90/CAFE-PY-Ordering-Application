@@ -21,10 +21,10 @@ function clearOrder() {
 
 function confirmOrder() {
     if (order.length === 0) {
-        alert("Your cart is empty! Please add items before confirming.");
+        alert("🚨 Your cart is empty! Please add items before confirming.");
         return;
     }
-    alert(`Order confirmed! Your total bill is $${totalBill}`);
+    alert(`🎉 Order confirmed! Your total bill is $${totalBill}`);
 }
 
 function updateOrderTable() {
@@ -35,14 +35,10 @@ function updateOrderTable() {
         let row = `<tr>
             <td>${item.name}</td>
             <td>$${item.price}</td>
-            <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
+            <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">❌ Remove</button></td>
         </tr>`;
         tableBody.innerHTML += row;
     });
 
     document.getElementById("total-bill").innerText = totalBill;
 }
-
-    .catch(error => console.error("Error:", error));
-});
->>>>>>> b9d09bf0d2360c5c6168b7e7a3f207706dd0803f
